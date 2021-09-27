@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상한문제 코드</title>
+</head>
+<body>
+    <textarea name="이상한 문제코드" id="" cols="150" rows="50">
+        #include <stdio.h>
+            #pragma warning(disable:4996)
+            #include <math.h>
+            
+            int fuc(int a) {
+            
+                int b = a;
+                int d = (int)pow(5, b) % 7;
+                printf("%d", d);
+            
+                 b = a == 5 ? 1 :
+                    a == 4 ? 2 :
+                    a == 6 ? 3 :
+                    a == 2 ? 4 :
+                    a == 3 ? 5 :
+                    a == 1 ? 6 : 0;
+            
+            
+                return b++;
+            
+            }
+            int main() {
+                
+                int a = 0;
+                printf("처음 값을 입력하세요 ( 1~6 사이의 수)\n");
+            
+                scanf_s("%d", &a);
+            
+                fuc(fuc(fuc(fuc(fuc(fuc(a))))));
+                
+                return 0;
+            }
+    </textarea>
+</body>
+</html>

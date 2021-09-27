@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생조회 코드</title>
+</head>
+<body>
+    <textarea name="학생조회 코드" id="" cols="200 " rows="200">
+        package arrayList;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Student_main {
+
+	public static void main(String[] args) {
+		ArrayList<Student>stuList=new ArrayList<Student>();
+		Scanner s =new Scanner(System.in);
+
+		Person p=null;
+		Student st=null;
+		
+		int age;
+		String name;
+		double height;
+		String number="";
+		int grade=0;
+		String major="";
+		double score=0;
+		
+		int setgrade=0;
+		
+		int choice=0;
+		boolean a=true;
+		while(a) {
+			Menu.menu();
+			choice=s.nextInt();
+			switch(choice) {
+			case 1:
+				System.out.print("이름입력:");
+				name=s.next();
+				System.out.print("나이입력:");
+				age=s.nextInt();
+				System.out.print("키입력:");
+				height=s.nextDouble();
+				System.out.print("학번입력:");
+				number=s.next();
+				System.out.print("학년입력:");
+				grade=s.nextInt();
+				System.out.print("전공입력:");
+				major=s.next();
+				System.out.print("평점입력:");
+				score=s.nextDouble();
+				
+				st=new Student(name,age,height,number,grade,major,score);
+				stuList.add(st);
+				break;
+			case 2:
+				for(int i=0;i<stuList.size();i++) {
+					stuList.get(i).showInfo();
+				}
+				break;
+			case 3:
+				System.out.printf("검색할 학생 학번을 입력하세요:");
+				boolean isFind=false;
+				number=s.next();
+				for(int i=0;i<stuList.size();i++) {
+					if(stuList.get(i)==null) {
+						break;
+					}else {
+						String check=stuList.get(i).getNumber();
+						if(check==number) {
+							stuList.get(i).showInfo();
+							isFind=true;
+						}
+					}
+					if(isFind==false) {
+						System.out.println("일치하는 결과가 없습니다.");
+					}
+				}
+				break;
+			case 4:
+				System.out.printf("학년을 수정할 학생 이름 입력하세요:");
+				name=s.next();
+				System.out.printf("학년 수정값 입력:");
+				setgrade=s.nextInt();
+				for(int i=0;i<stuList.size();i++) {
+					if(stuList.get(i)==null) {
+						break;
+					}else {
+						String check=stuList.get(i).getName();
+						if(check.contains(name)==true) {
+							stuList.get(i).setGrade(setgrade);
+							stuList.get(i).showInfo();
+						}
+					}
+				}
+				break;
+			case 5:
+				System.out.printf("삭제할 데이터의 학생 학번을 입력하세요:");
+				number=s.next();
+				for(int i=0;i<stuList.size();i++) {
+					if(stuList.get(i)==null) {
+						break;
+					}else {
+						String check=stuList.get(i).getNumber();
+						if(check.contains(number)==true) {
+							stuList.remove(i);
+							System.out.printf("삭제완료\n");
+						}
+					}
+				}
+				break;
+			case 6:
+				a=false;
+				break;
+			}
+		}
+
+	}
+
+}
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+package arrayList;
+
+public class Student extends Person {
+	private String number;
+	private int grade;
+	private String major;
+	private double score;
+	
+	public Student() {
+		super();
+		number="";
+		grade=0;
+		major="";
+		score=0;
+	}
+	public Student(String name,int age,double height
+			,String number,int grade,String major,double score) {
+		super(name,age,height);
+		this.number=number;
+		this.grade=grade;
+		this.major=major;
+		this.score=score;
+	}
+	public void showInfo() {
+		super.showInfo();
+		System.out.printf("학번:%s\n", number);
+		System.out.printf("학년:%d\n", grade);
+		System.out.printf("전공:%s\n", major);
+		System.out.printf("학점:%.1f\n", score);
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number=number;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade=grade;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major=major;
+	}
+	public double getScore() {
+		return score;
+	}
+	public void setScore(double score) {
+		this.score=score;
+	}
+}
+    </textarea>
+</body>
+</html>
